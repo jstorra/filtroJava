@@ -14,4 +14,8 @@ public class MisionController {
     public static Mision getMisionById(long misionId) {
         return MISIONDAO.getMisionById(misionId);
     }
+    
+    public static void addMision(Mision mision) {
+        MISIONDAO.addMision(mision);
+    }
 }

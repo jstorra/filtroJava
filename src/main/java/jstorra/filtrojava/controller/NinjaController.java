@@ -14,4 +14,8 @@ public class NinjaController {
     public static Ninja getNinjaById(long ninjaId) {
         return NINJADAO.getNinjaById(ninjaId);
     }
+    
+    public static void addNinja(Ninja ninja) {
+        NINJADAO.addNinja(ninja);
+    }
 }

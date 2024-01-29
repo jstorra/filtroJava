@@ -11,7 +11,7 @@ import jstorra.filtrojava.model.Mision.Mision;
 import jstorra.filtrojava.model.MisionNinja.MisionNinja;
 import jstorra.filtrojava.model.Ninja.Ninja;
 
-public class view4 {
+public class View4 {
 
     public static void initApp() {
         Scanner scanner = new Scanner(System.in);

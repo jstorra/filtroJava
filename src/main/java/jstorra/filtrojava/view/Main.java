@@ -19,26 +19,34 @@ public class Main {
                                    4. Asignar misiones
                                    5. Completar mision
                                    6. Mostrar todas las misiones completadas
+                                   7. Agregar ninja
+                                   8. Agregar mision
+                                   9. Agregar habilidad
                                    0. Salir
                                    """);
-
                 System.out.print("Opcion: ");
                 int opcion = scanner.nextInt();
                 if (opcion == 0) {
                     System.out.println("\nSaliendo...");
                     break;
                 } else if (opcion == 1) {
-                    view1.initApp();
+                    View1.initApp();
                 } else if (opcion == 2) {
-                    view2.initApp();
+                    View2.initApp();
                 } else if (opcion == 3) {
-                    view3.initApp();
+                    View3.initApp();
                 } else if (opcion == 4) {
-                    view4.initApp();
+                    View4.initApp();
                 } else if (opcion == 5) {
-                    view5.initApp();
+                    View5.initApp();
                 } else if (opcion == 6) {
-                    view6.initApp();
+                    View6.initApp();
+                } else if (opcion == 7) {
+                    NinjaView.initApp();
+                } else if (opcion == 8) {
+                    MisionView.initApp();
+                } else if (opcion == 9){
+                    HabilidadView.initApp();
                 } else {
                     throw new Exception("\nError: La opcion ingresada no es valida.");
                 }
@@ -50,5 +58,4 @@ public class Main {
             }
         }
     }
-
 }

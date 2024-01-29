@@ -1,23 +1,20 @@
 package jstorra.filtrojava.view;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-import jstorra.filtrojava.controller.MisionController;
-import jstorra.filtrojava.controller.MisionNinjaController;
+import jstorra.filtrojava.controller.HabilidadController;
 import jstorra.filtrojava.controller.NinjaController;
-import jstorra.filtrojava.model.Mision.Mision;
-import jstorra.filtrojava.model.MisionNinja.MisionNinja;
+import jstorra.filtrojava.model.Habilidad.Habilidad;
 import jstorra.filtrojava.model.Ninja.Ninja;
 
-public class View2 {
-
+public class HabilidadView {
+    
     public static void initApp() {
         Scanner scanner = new Scanner(System.in);
         try {
-            System.out.println("\n---------- NINJAS EXISTENTES ----------\n");
-
+            System.out.println("\n---------- AGREGAR HABILIDAD ----------\n");
+            
             List<Ninja> ninjas = NinjaController.getAllNinjas();
 
             ninjas.forEach(ninja -> System.out.println(ninja.getNinjaId() + ". " + ninja.getNombre().toUpperCase()));
@@ -31,16 +28,26 @@ public class View2 {
             if (!existe)
                 throw new Exception("\nError: El ninja no existe.");
             
-            Ninja ninja = NinjaController.getNinjaById(ninjaId);
-
-            List<Mision> misiones = MisionController.getAllMisiones();
-            List<MisionNinja> misionesNinja = MisionNinjaController.getAllMisionNinja();
+            System.out.print("Ingrese el nombre de la habilidad: ");
+            String nombre = scanner.nextLine();
             
-            System.out.println("\n---------- MISIONES DISPONIBLES PARA EL NINJA ----------\n");
-            misiones.stream()
-                    .filter(mision -> mision.getRango().getNombre().equalsIgnoreCase(ninja.getRango().getNombre()))
-                    .forEach(mision -> System.out.println(mision.getMisionId() + ". " + mision.getDescripcion() + ", Recompensa: " + mision.getRecompensa()));
+            if (nombre.isEmpty())
+                throw new Exception("\nError: El nombre no debe estar vacio.");
 
+            System.out.print("Ingresa la descripcion de la habilidad: ");
+            String descripcion = scanner.nextLine();
+
+            if (descripcion.isEmpty())
+                throw new Exception("\nError: La descripcion no debe estar vacia.");
+
+            Habilidad habilidad = new Habilidad();
+            habilidad.setNinjaId(ninjaId);
+            habilidad.setNombre(nombre);
+            habilidad.setDescripcion(descripcion);
+            
+            HabilidadController.addHabilidad(habilidad);
+            System.out.println("\nMensaje: La habilidad ha sido registrada.");
+            
         } catch (InputMismatchException e) {
             scanner.nextLine();
             System.out.println("\nError: El caracter ingresado no es valido.");

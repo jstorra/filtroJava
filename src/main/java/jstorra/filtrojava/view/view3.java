@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +12,7 @@ import jstorra.filtrojava.controller.NinjaController;
 import jstorra.filtrojava.model.MisionNinja.MisionNinja;
 import jstorra.filtrojava.model.Ninja.Ninja;
 
-public class view3 {
+public class View3 {
 
     public static void initApp() {
         Scanner scanner = new Scanner(System.in);
@@ -43,12 +42,15 @@ public class view3 {
 
             List<MisionNinja> misionesCompletadas = (List<MisionNinja>) ois.readObject();
             
+            if (misionesCompletadas.isEmpty())
+                throw new Exception("\nMensaje: No hay misiones completadas");
+            
             boolean tiene = misionesCompletadas.stream().anyMatch(mision -> mision.getNinjaId() == ninjaId);
         
             if (!tiene)
                 throw new Exception("\nMensaje: El ninja no tiene misiones completadas.");
             
-            System.out.println("\n---------- MISIONES COMPLETADAS: ----------\n");
+            System.out.println("\n---------- MISIONES COMPLETADAS ----------\n");
             misionesCompletadas.stream().filter(mision -> mision.getNinjaId() == ninjaId).forEach(System.out::println);
             
         } catch (InputMismatchException e) {

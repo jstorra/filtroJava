@@ -9,7 +9,7 @@ import java.util.Scanner;
 import jstorra.filtrojava.controller.MisionNinjaController;
 import jstorra.filtrojava.model.MisionNinja.MisionNinja;
 
-public class view5 {
+public class View5 {
 
     public static void initApp() {
         Scanner scanner = new Scanner(System.in);

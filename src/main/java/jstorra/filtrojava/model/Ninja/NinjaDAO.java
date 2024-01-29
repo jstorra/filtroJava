@@ -10,7 +10,7 @@ public class NinjaDAO {
 
     private static final String SELECT_NINJA = "SELECT * FROM ninja";
     private static final String SELECT_NINJABYID = "SELECT * FROM ninja WHERE ninjaId = ?";
-
+    private static final String INSERT_NINJA = "INSERT INTO ninja (nombre, rango, aldea) VALUES (?, ?, ?)";
 
     public List<Ninja> getAllNinjas() {
         List<Ninja> ninjas = new ArrayList<>();
@@ -47,5 +47,16 @@ public class NinjaDAO {
             e.printStackTrace();
         }
         return ninja;
+    }
+    
+    public void addNinja(Ninja ninja) {
+        try (Connection connection = ConnectionDB.MySQConnection(); PreparedStatement ps = connection.prepareStatement(INSERT_NINJA)) {
+            ps.setString(1, ninja.getNombre());
+            ps.setString(2, ninja.getRango().getNombre());
+            ps.setString(3, ninja.getAldea());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

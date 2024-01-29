@@ -3,6 +3,7 @@ package jstorra.filtrojava.model.Mision;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import jstorra.filtrojava.model.Ninja.Ninja;
 import jstorra.filtrojava.model.Rango;
 import jstorra.filtrojava.persistence.ConnectionDB;
 
@@ -10,6 +11,7 @@ public class MisionDAO {
 
     private static final String SELECT_MISION = "SELECT * FROM mision";
     private static final String SELECT_MISIONBYID = "SELECT * FROM mision WHERE misionId = ?";
+    private static final String INSERT_MISION = "INSERT INTO mision (descripcion, rango, recompensa) VALUES (?, ?, ?)";
 
     public List<Mision> getAllMisiones() {
         List<Mision> misiones = new ArrayList<>();
@@ -46,5 +48,16 @@ public class MisionDAO {
             e.printStackTrace();
         }
         return mision;
+    }
+    
+    public void addMision(Mision mision) {
+        try (Connection connection = ConnectionDB.MySQConnection(); PreparedStatement ps = connection.prepareStatement(INSERT_MISION)) {
+            ps.setString(1, mision.getDescripcion());
+            ps.setString(2, mision.getRango().getNombre());
+            ps.setDouble(3, mision.getRecompensa());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

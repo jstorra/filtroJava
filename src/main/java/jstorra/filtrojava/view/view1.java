@@ -6,7 +6,7 @@ import jstorra.filtrojava.controller.NinjaController;
 import jstorra.filtrojava.model.Habilidad.Habilidad;
 import jstorra.filtrojava.model.Ninja.Ninja;
 
-public class view1 {
+public class View1 {
 
     public static void initApp() {
         System.out.println("\n---------- NINJAS Y HABILIDADES ----------");
