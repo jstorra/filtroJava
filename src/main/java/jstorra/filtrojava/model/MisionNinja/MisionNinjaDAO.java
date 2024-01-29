@@ -20,14 +20,13 @@ public class MisionNinjaDAO {
                     misionNinja.setNinjaId(rs.getLong("ninjaId"));
                     misionNinja.setMisionId(rs.getLong("misionId"));
                     misionNinja.setFechaInicio(LocalDate.parse(rs.getString("fechaInicio")));
-//                    misionNinja.setFechaFin(LocalDate.parse(rs.getString("fechaFin")));
+                    misionNinja.setFechaFin(rs.getString("fechaFin") == null ? null : LocalDate.parse(rs.getString("fechaFin")));
                     misionesNinja.add(misionNinja);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(misionesNinja);
         return misionesNinja;
     }
 
