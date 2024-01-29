@@ -1,14 +1,11 @@
 package jstorra.filtrojava.view;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import jstorra.filtrojava.controller.MisionController;
-import jstorra.filtrojava.controller.MisionNinjaController;
 import jstorra.filtrojava.controller.NinjaController;
 import jstorra.filtrojava.model.Mision.Mision;
-import jstorra.filtrojava.model.MisionNinja.MisionNinja;
 import jstorra.filtrojava.model.Ninja.Ninja;
 
 public class View2 {
@@ -34,7 +31,6 @@ public class View2 {
             Ninja ninja = NinjaController.getNinjaById(ninjaId);
 
             List<Mision> misiones = MisionController.getAllMisiones();
-            List<MisionNinja> misionesNinja = MisionNinjaController.getAllMisionNinja();
             
             System.out.println("\n---------- MISIONES DISPONIBLES PARA EL NINJA ----------\n");
             misiones.stream()
