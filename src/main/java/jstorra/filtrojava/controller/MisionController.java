@@ -10,4 +10,8 @@ public class MisionController {
     public static List<Mision> getAllMisiones() {
         return MISIONDAO.getAllMisiones();
     }
+    
+    public static Mision getMisionById(long misionId) {
+        return MISIONDAO.getMisionById(misionId);
+    }
 }

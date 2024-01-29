@@ -1,8 +1,9 @@
 package jstorra.filtrojava.model.MisionNinja;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class MisionNinja {
+public class MisionNinja implements Serializable {
     private long ninjaId;
     private long misionId;
     private LocalDate fechaInicio;

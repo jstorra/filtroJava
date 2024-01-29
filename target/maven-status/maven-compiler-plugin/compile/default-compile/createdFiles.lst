@@ -5,7 +5,6 @@ jstorra\filtrojava\model\Rango.class
 jstorra\filtrojava\model\Habilidad\HabilidadDAO.class
 jstorra\filtrojava\controller\NinjaController.class
 jstorra\filtrojava\controller\MisionNinjaController.class
-jstorra\filtrojava\FiltroJava.class
 jstorra\filtrojava\controller\HabilidadController.class
 jstorra\filtrojava\persistence\ConnectionDB.class
 jstorra\filtrojava\model\Mision\MisionDAO.class

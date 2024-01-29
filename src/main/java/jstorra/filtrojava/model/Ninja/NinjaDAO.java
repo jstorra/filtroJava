@@ -9,6 +9,8 @@ import jstorra.filtrojava.persistence.ConnectionDB;
 public class NinjaDAO {
 
     private static final String SELECT_NINJA = "SELECT * FROM ninja";
+    private static final String SELECT_NINJABYID = "SELECT * FROM ninja WHERE ninjaId = ?";
+
 
     public List<Ninja> getAllNinjas() {
         List<Ninja> ninjas = new ArrayList<>();
@@ -27,5 +29,23 @@ public class NinjaDAO {
             e.printStackTrace();
         }
         return ninjas;
+    }
+    
+    public Ninja getNinjaById(long ninjaId) {
+        Ninja ninja = new Ninja();
+        try (Connection connection = ConnectionDB.MySQConnection(); PreparedStatement ps = connection.prepareStatement(SELECT_NINJABYID)) {
+            ps.setLong(1, ninjaId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ninja.setNinjaId(rs.getLong("ninjaId"));
+                    ninja.setNombre(rs.getString("nombre"));
+                    ninja.setRango(Rango.valueOf(rs.getString("rango").toUpperCase()));
+                    ninja.setAldea(rs.getString("aldea"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ninja;
     }
 }

@@ -10,6 +10,8 @@ public class MisionNinjaDAO {
 
     private static final String SELECT_MISIONNINJA = "SELECT * FROM misionNinja";
     private static final String INSERT_MISIONNINJA = "INSERT INTO misionNinja (ninjaId, misionId, fechaInicio, fechaFin) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE_MISIONNINJA = "UPDATE misionNinja SET fechaFin = ? WHERE ninjaId = ? AND misionId = ?";
+
 
     public List<MisionNinja> getAllMisionNinja() {
         List<MisionNinja> misionesNinja = new ArrayList<>();
@@ -30,12 +32,23 @@ public class MisionNinjaDAO {
         return misionesNinja;
     }
 
-    public static void addMisionNinja(MisionNinja misionNinja) {
+    public void addMisionNinja(MisionNinja misionNinja) {
         try (Connection connection = ConnectionDB.MySQConnection(); PreparedStatement ps = connection.prepareStatement(INSERT_MISIONNINJA)) {
             ps.setLong(1, misionNinja.getNinjaId());
-            ps.setLong(1, misionNinja.getMisionId());
-            ps.setString(1, misionNinja.getFechaInicio().toString());
+            ps.setLong(2, misionNinja.getMisionId());
+            ps.setString(3, misionNinja.getFechaInicio().toString());
+            ps.setObject(4, null);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void updateMisionNinja(MisionNinja misionNinja) {
+        try (Connection connection = ConnectionDB.MySQConnection(); PreparedStatement ps = connection.prepareStatement(UPDATE_MISIONNINJA)) {
             ps.setString(1, misionNinja.getFechaFin().toString());
+            ps.setLong(2, misionNinja.getNinjaId());
+            ps.setLong(3, misionNinja.getMisionId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

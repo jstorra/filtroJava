@@ -10,4 +10,8 @@ public class NinjaController {
     public static List<Ninja> getAllNinjas() {
         return NINJADAO.getAllNinjas();
     }
+    
+    public static Ninja getNinjaById(long ninjaId) {
+        return NINJADAO.getNinjaById(ninjaId);
+    }
 }

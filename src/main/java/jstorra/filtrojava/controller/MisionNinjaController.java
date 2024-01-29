@@ -14,4 +14,8 @@ public class MisionNinjaController {
     public static void addMisionNinja(MisionNinja misionNinja) {
         MISIONNINJADAO.addMisionNinja(misionNinja);
     }
+    
+    public static void updateMisionNinja(MisionNinja misionNinja) {
+        MISIONNINJADAO.updateMisionNinja(misionNinja);
+    }
 }
